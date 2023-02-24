@@ -1,0 +1,193 @@
+// general
+
+@import "./reset"; // global css reset
+@import "./variables"; // style variables container for colors, fonts and other global styles
+@import "./container"; // main container
+
+// pages
+@import "../pages/Home/Styles";
+@import "../pages/TripPlanner/Styles";
+
+// components
+@import "../components/Navbar/Styles";
+
+//atoms
+
+* {
+  // outline: 1px solid #ff00ff55;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: $--font-main;
+  color: $--c-black;
+  background-color: $--c-white;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-weight: 300;
+}
+
+h1 {
+  font-weight: 200;
+}
+
+h2 {
+  font-size: $--font-xl;
+  font-weight: 300;
+}
+
+p {
+  font-size: $--font-md;
+}
+
+a {
+  text-decoration: none;
+  color: $--c-black;
+}
+
+ul {
+  padding: 0;
+}
+
+img {
+  pointer-events: none; //disable image copy/drag
+}
+
+button {
+  all: unset;
+  text-align: center !important;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn--primary {
+  background-color: rgba(0, 222, 0, 0.7) !important;
+  width: 300px;
+}
+
+.btn--primary:hover {
+  background-color: rgba(0, 255, 0, 0.9) !important;
+}
+
+.btn--secondary {
+  width: 300px;
+}
+
+.btn--secondary:hover {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.btn--tertiary {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgb(250, 250, 250);
+  border-radius: 4px;
+}
+
+.btn--tertiary:hover {
+  opacity: 0.8;
+}
+
+.btn--back {
+  all: unset !important;
+  border: 0px;
+  padding: 0;
+  cursor: pointer !important;
+
+  img {
+    border: 0px;
+    min-width: 30px;
+    align-self: center;
+    transform: rotate(90deg);
+    cursor: pointer;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.form__error-message {
+  color: red;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #8f54a0 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $--c-black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $--c-white;
+  border-radius: 10px;
+  border: 1px solid slategray;
+}
+
+//----------------------------------
+//media queries
+//----------------------------------
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: $--font-xl;
+  }
+
+  h2 {
+    font-size: $--font-lg;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: $--font-md;
+  }
+
+  a {
+    text-decoration: none;
+    color: $--c-black;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  .btn--primary,
+  .btn--secondary,
+  .btn--tertiary {
+    width: auto;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+}

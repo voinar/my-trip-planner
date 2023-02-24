@@ -1,0 +1,28 @@
+// style variables container for colors, fonts and other global styles
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;500;700&display=swap');
+
+$--c-white: rgb(242, 242, 242);
+$--c-black: rgb(58, 57, 57);
+$--font-main: 'Prompt', sans-serif;
+$--c-text: rgb(30, 27, 27);
+
+//font-sizes
+$--font-xs: 10px;
+$--font-sm: 14px;
+$--font-md: 16px;
+$--font-lg: 20px;
+$--font-xl: 24px;
+$--font-xxl: 36px;
+
+//font weights
+$--font-light: 100;
+$--font-medium: 300;
+$--font-heavy: 500;
+
+//borders
+$--border-standard: 1px solid rgba(0, 0, 0, 0.2);
+$--border-focus: 1px solid rgba(0, 0, 0, 0.5);
+
+//transitions
+$--transition-standard: all 0.3s;

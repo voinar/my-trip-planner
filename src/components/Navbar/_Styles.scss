@@ -1,0 +1,11 @@
+nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.1rem;
+
+  li span:hover {
+    color: green;
+  }
+}
