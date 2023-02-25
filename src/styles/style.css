@@ -87,58 +87,6 @@ select {
   font-size: 10rem;
 }
 
-.trip-planner__map {
-  border: 2px solid teal;
-  width: 90vw;
-  height: 60vh;
-}
-
-.trip-planner__search-inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: 1rem 0 2rem 0;
-  width: auto;
-}
-
-.trip-planner__search-input {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 3rem;
-}
-
-.trip-planner__search-input button {
-  width: 10rem;
-}
-
-.locations-list {
-  position: absolute;
-  background-color: white;
-  top: 2rem;
-  width: auto;
-  padding: 1rem;
-  border: 1px solid gray;
-  border-radius: 0.3rem;
-  -webkit-box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.293);
-          box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.293);
-  z-index: 10000;
-  cursor: pointer;
-}
-
-.locations-list li {
-  padding: 0.5rem;
-}
-
-.locations-list li:hover {
-  background-color: #f9f9f9;
-}
-
 nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
