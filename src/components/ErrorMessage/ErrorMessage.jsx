@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useErrorMessage } from "./useErrorMessage";
+import React from "react";
 
 import IconError from "img/icons/icon-error.svg";
 import IconCancel from "img/icons/icon-cancel.svg";
