@@ -1,0 +1,33 @@
+.error-message {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  color: rgb(60, 60, 60);
+  background-color: rgb(249, 216, 225);
+  border-radius: 4px;
+  font-weight: 300;
+  z-index: 1000;
+
+  img {
+    width: 16px;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    border: none;
+    cursor: pointer;
+
+    img {
+      width: 8px;
+    }
+  }
+}

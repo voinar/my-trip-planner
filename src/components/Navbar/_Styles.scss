@@ -2,10 +2,11 @@ nav ul {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
+  margin: 0;
 
   align-items: center;
-  font-size: 1.1rem;
+  // font-size: 1.1rem;
 
   li span:hover {
     color: green;

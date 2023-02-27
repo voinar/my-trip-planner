@@ -1,26 +1,19 @@
-import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useErrorMessage } from "components/ErrorMessage/useErrorMessage";
+import axios from "axios";
 
 export const useTripPlanner = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [itineraryStart, setItineraryStart] = useState<any>([
-    // "52.2319581", "21.0067249"
-  ]);
-  const [itineraryEnd, setItineraryEnd] = useState<any>([
-    // "50.0619474",
-    // "19.9368564"
-  ]);
+  const { errorMessage, setErrorMessage } = useErrorMessage();
+  const [itineraryStart, setItineraryStart] = useState([]);
+  const [itineraryEnd, setItineraryEnd] = useState([]);
   const [findingLocationLoading, setFindingLocationLoading] = useState(false);
-  const [availableStartLocations, setAvailableStartLocations] = useState<any>(
-    []
-  );
+  const [availableStartLocations, setAvailableStartLocations] = useState([]);
   const [availableStartLocationsHistory, setAvailableStartLocationsHistory] =
-    useState<any>([]);
-  const [availableEndLocations, setAvailableEndLocations] = useState<any>([]);
+    useState([]);
+  const [availableEndLocations, setAvailableEndLocations] = useState([]);
   const [availableEndLocationsHistory, setAvailableEndLocationsHistory] =
-    useState<any>([]);
+    useState([]);
   const [showAvailableStartLocations, setShowAvailableStartLocations] =
     useState(false);
   const [showAvailableEndLocations, setShowAvailableEndLocations] =
@@ -30,45 +23,61 @@ export const useTripPlanner = () => {
 
   const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
 
-  const handleSelectStartLocation = (location: any) => {
+  const handleSelectStartLocation = location => {
     setItineraryStart([Number(location.lat), Number(location.lon)]);
     setFindItineraryStartInput(location.display_name);
     setShowAvailableStartLocations(false);
 
     if (!availableStartLocationsHistory.includes(location.display_name)) {
-      setAvailableStartLocationsHistory((prevState: any) => [
+      setAvailableStartLocationsHistory(prevState => [
         ...prevState,
         location.display_name
       ]);
     }
   };
 
-  const handleSelectEndLocation = (location: any) => {
+  const handleSelectEndLocation = location => {
     setItineraryEnd([Number(location.lat), Number(location.lon)]);
     setFindItineraryEndInput(location.display_name);
     setShowAvailableEndLocations(false);
 
     if (!availableEndLocationsHistory.includes(location.display_name)) {
-      setAvailableEndLocationsHistory((prevState: any) => [
+      setAvailableEndLocationsHistory(prevState => [
         ...prevState,
         location.display_name
       ]);
     }
   };
 
-  const handleFindItineraryStart = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const handleFindItineraryStart = event => {
     setFindItineraryStartInput(event.target.value);
   };
 
-  const handleFindItineraryEnd = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const handleFindItineraryEnd = event => {
     setFindItineraryEndInput(event.target.value);
   };
 
-  const queryDebounceDelayValue = 500;
+  const navigate = useNavigate();
+
+  const findRouteCoords = () => {
+    if (itineraryStart.length > 0 && itineraryEnd.length > 0) {
+      localStorage.setItem(
+        "lastSearchResults",
+        `${itineraryStart}/${itineraryEnd}`
+      );
+      navigate(`/results/${itineraryStart}/${itineraryEnd}`);
+    }
+
+    if (itineraryEnd.length > 0 && itineraryStart.length === 0) {
+      setErrorMessage("Please enter your starting point");
+    }
+
+    if (itineraryStart.length > 0 && itineraryEnd.length === 0) {
+      setErrorMessage("Please enter your destination");
+    }
+  };
+
+  const queryDebounceDelayValue = 300;
 
   useEffect(() => {
     const findItineraryStartCoords = setTimeout(() => {
@@ -110,66 +119,9 @@ export const useTripPlanner = () => {
     return () => clearTimeout(findItineraryEndCoords);
   }, [findItineraryEndInput]);
 
-  // useEffect(() => {
-  //   const findItineraryEndCoords = setTimeout(() => {
-  //     findItineraryEndInput.length > 2 &&
-  //       axios
-  //         .get(
-  //           `https://eu1.locationiq.com/v1/search?key=${accessToken}&q=${findItineraryEndInput}&format=json`
-  //         )
-  //         .then(function (response) {
-  //           // handle success
-  //           setAvailableEndLocations(response.data);
-  //           // console.log("res", response);
-  //           // console.log("locs", availableStartLocations.data);
-  //           setShowAvailableEndLocations(true);
-  //         })
-  //         .catch(function (error) {
-  //           // handle error
-  //           console.log(error);
-  //         })
-  //         .finally(function () {
-  //           // always executed
-  //         });
-  //   }, queryDebounceDelayValue);
-  //   return () => clearTimeout(findItineraryEndCoords);
-  // }, [findItineraryEndInput]);
-
-  const navigate = useNavigate();
-
-  const findRouteCoords = () => {
-    if (
-      findItineraryStartInput.length > 2 &&
-      findItineraryEndInput.length > 2
-    ) {
-      // setAvailableEndLocationsHistory((prevState: any) => [
-      //   ...prevState,
-      //   [findItineraryEndInput]
-      // ]);
-
-      console.log(
-        "avilable",
-        availableStartLocationsHistory,
-        availableEndLocationsHistory
-      );
-      // // navigate(`/results/${itineraryStart}/${itineraryEnd}`);
-    }
-
-    if (itineraryEnd.length > 0 && itineraryStart.length === 0) {
-      setErrorMessage("Please enter your starting point");
-    }
-
-    if (itineraryStart.length > 0 && itineraryEnd.length === 0) {
-      setErrorMessage("Please enter your destination");
-    }
-  };
-
-  // console.log("dest", itineraryStart, itineraryEnd);
-
   useEffect(() => {
     const getUserLocation = () => {
       if ("geolocation" in navigator) {
-        // console.log("Available");
         navigator.geolocation.getCurrentPosition(function (position) {
           setItineraryStart([
             position.coords.latitude,
@@ -177,7 +129,6 @@ export const useTripPlanner = () => {
           ]);
         });
       } else {
-        // console.log("Not Available");
         alert("Please enable your location services in your browser settings");
       }
     };

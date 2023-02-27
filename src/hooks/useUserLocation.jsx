@@ -7,16 +7,13 @@ export const useUserLocation = () => {
   useEffect(() => {
     const getUserLocation = () => {
       if ("geolocation" in navigator) {
-        // console.log("Available");
         navigator.geolocation.getCurrentPosition(function (position) {
           setUserLocation([
             position.coords.latitude,
             position.coords.longitude
           ]);
-          // console.log(userLocation);
         });
       } else {
-        // console.log("Not Available");
         alert("Please enable your location services in your browser settings");
       }
     };
@@ -26,6 +23,6 @@ export const useUserLocation = () => {
   return {
     defaultLocation,
     userLocation,
-    setUserLocation,
+    setUserLocation
   };
 };

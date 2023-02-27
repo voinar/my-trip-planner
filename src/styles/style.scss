@@ -6,10 +6,13 @@
 
 // pages
 @import "../pages/Home/Styles";
-@import "../pages/Styles";
+@import "../pages/FindLocation/Styles";
+@import "../pages/TripPlanner/Styles";
 
 // components
 @import "../components/Navbar/Styles";
+@import "../components/ErrorMessage/Styles";
+@import "../components/TripCostWidget/Styles";
 
 //atoms
 
@@ -18,14 +21,14 @@
 }
 
 html {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 body {
   font-family: $--font-main;
   color: $--c-black;
   background-color: $--c-white;
-  overflow: hidden;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 

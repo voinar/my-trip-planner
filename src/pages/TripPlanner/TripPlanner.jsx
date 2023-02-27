@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTripPlanner } from "hooks/useTripPlanner";
-import IconError from "img/icons/icon-info-error.svg";
+import ErrorMessage from "components/ErrorMessage/ErrorMessage";
+import IconCancel from "img/icons/icon-cancel.svg";
 
 const TripPlanner = () => {
   const {
-    // userLocation,
-    // setUserLocation,
     errorMessage,
     setErrorMessage,
     findItineraryStartInput,
@@ -14,33 +13,21 @@ const TripPlanner = () => {
     findItineraryEndInput,
     setFindItineraryEndInput,
     availableStartLocations,
-    setAvailableStartLocations,
     showAvailableStartLocations,
     setShowAvailableStartLocations,
     availableEndLocations,
     showAvailableEndLocations,
     setShowAvailableEndLocations,
-    handleFindItineraryStart,
     handleFindItineraryEnd,
     handleSelectStartLocation,
     handleSelectEndLocation,
     findRouteCoords,
     availableStartLocationsHistory,
-    setAvailableStartLocationsHistory,
     availableEndLocationsHistory,
-    setAvailableEndLocationsHistory
   } = useTripPlanner();
 
-  const ErrorMessage = (props: any) =>
-    !errorMessage ? null : (
-      <div className="error-message">
-        <img src={IconError} />
-        {props.errorMessage}
-      </div>
-    );
-
-  const AvailableStartLocationsList: any = () => {
-    const resetStartQuery = (location: any) => {
+  const AvailableStartLocationsList = () => {
+    const resetStartQuery = location => {
       setShowAvailableStartLocations(false);
       setFindItineraryStartInput(location);
     };
@@ -54,7 +41,7 @@ const TripPlanner = () => {
         <ul
           ref={availableStartLocationsListRef}
           className="trip-planner__locations-list">
-          {availableStartLocations.map((location: any) => (
+          {availableStartLocations.map(location => (
             <li
               key={uuidv4()}
               onClick={() => handleSelectStartLocation(location)}>
@@ -68,13 +55,13 @@ const TripPlanner = () => {
     if (
       findItineraryStartInput.length === 0 &&
       showAvailableStartLocations === true &&
-      availableStartLocations.length > 0
+      availableStartLocationsHistory.length > 0
     ) {
       return (
         <ul
           ref={availableStartLocationsListRef}
           className="trip-planner__locations-list">
-          {availableStartLocationsHistory.map((location: any) => (
+          {availableStartLocationsHistory.map(location => (
             <li
               key={uuidv4()}
               onClick={() => resetStartQuery(location)}>
@@ -86,8 +73,8 @@ const TripPlanner = () => {
     }
   };
 
-  const AvailableEndLocationsList: any = () => {
-    const resetEndQuery = (location: any) => {
+  const AvailableEndLocationsList = () => {
+    const resetEndQuery = location => {
       setShowAvailableEndLocations(false);
       setFindItineraryEndInput(location);
     };
@@ -101,7 +88,7 @@ const TripPlanner = () => {
         <ul
           ref={availableEndLocationsListRef}
           className="trip-planner__locations-list">
-          {availableEndLocations.map((location: any) => (
+          {availableEndLocations.map(location => (
             <li
               key={uuidv4()}
               onClick={() => handleSelectEndLocation(location)}>
@@ -115,13 +102,13 @@ const TripPlanner = () => {
     if (
       findItineraryEndInput.length === 0 &&
       showAvailableEndLocations === true &&
-      availableEndLocations.length > 0
+      availableEndLocationsHistory.length > 0
     ) {
       return (
         <ul
           ref={availableEndLocationsListRef}
           className="trip-planner__locations-list">
-          {availableEndLocationsHistory.map((location: any) => (
+          {availableEndLocationsHistory.map(location => (
             <li
               key={uuidv4()}
               onClick={() => resetEndQuery(location)}>
@@ -133,27 +120,10 @@ const TripPlanner = () => {
     }
   };
 
-  // const AvailableEndLocationsList = () => {
-  //   return availableEndLocations.length > 0 &&
-  //     showAvailableEndLocations === true ? (
-  //     <ul
-  //       ref={availableEndLocationsListRef}
-  //       className="trip-planner__locations-list">
-  //       {availableEndLocations.map((location: any) => (
-  //         <li
-  //           key={uuidv4()}
-  //           onClick={() => handleSelectEndLocation(location)}>
-  //           {location.display_name}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   ) : null;
-  // };
-
   const availableStartLocationsListRef = useRef(null);
-  const closeAvailableStartLocationsListOnClickOutside = (ref: any) => {
+  const closeAvailableStartLocationsListOnClickOutside = ref => {
     useEffect(() => {
-      function handleClickOutside(event: any) {
+      function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           setShowAvailableStartLocations(false);
         }
@@ -169,9 +139,9 @@ const TripPlanner = () => {
   );
 
   const availableEndLocationsListRef = useRef(null);
-  const closeAvailableEndLocationsListOnClickOutside = (ref: any) => {
+  const closeAvailableEndLocationsListOnClickOutside = ref => {
     useEffect(() => {
-      function handleClickOutside(event: any) {
+      function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           setShowAvailableEndLocations(false);
         }
@@ -200,13 +170,17 @@ const TripPlanner = () => {
             onClick={() => {
               findItineraryStartInput === "" &&
                 setShowAvailableStartLocations(true);
+              setErrorMessage("");
             }}
             value={findItineraryStartInput}
           />
           <button
             className="trip-planner__button trip-planner__button--clear"
             onClick={() => setFindItineraryStartInput("")}>
-            x
+            <img
+              src={IconCancel}
+              alt="icon cancel"
+            />
           </button>
           <AvailableStartLocationsList />
         </div>
@@ -217,13 +191,17 @@ const TripPlanner = () => {
             onClick={() => {
               findItineraryEndInput === "" &&
                 setShowAvailableEndLocations(true);
+              setErrorMessage("");
             }}
             value={findItineraryEndInput}
           />
           <button
             className="trip-planner__button trip-planner__button--clear"
             onClick={() => setFindItineraryEndInput("")}>
-            x
+            <img
+              src={IconCancel}
+              alt="icon cancel"
+            />
           </button>
           <AvailableEndLocationsList />
         </div>
@@ -232,7 +210,10 @@ const TripPlanner = () => {
           onClick={findRouteCoords}>
           Let&#39;s go!
         </button>
-        <ErrorMessage errorMessage={errorMessage} />
+        <ErrorMessage
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+        />
       </div>
     </div>
   );

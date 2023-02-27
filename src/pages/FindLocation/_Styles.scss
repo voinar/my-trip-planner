@@ -1,0 +1,30 @@
+.trip-planner__find-location {
+  position: relative;
+
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  gap: 1rem;
+
+  margin: 1rem 0 2rem 0;
+
+  flex-direction: column;
+  width: auto;
+}
+
+.trip-planner__find-location__map {
+  display: flex;
+
+  width: 100%;
+  height: calc(100vh - 260px);
+
+  box-shadow: 2px 2px 14px rgb(0, 0, 0, 0.1);
+}
+
+.trip-planner__find-location__search-button {
+  width: 14rem;
+}
+
+.trip-planner__find-location__search-button:hover {
+  background-color: greenyellow;
+}
