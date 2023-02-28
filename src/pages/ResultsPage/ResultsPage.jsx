@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  MapContainer,
-  TileLayer,
-  useMap,
-} from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
@@ -84,19 +81,31 @@ const ResultsPage = () => {
 
   return (
     <div className="results-page container">
-      <h1>Your itinerary:</h1>
-      <ErrorMessage
-        errorMessage={errorMessage}
-        setErrorMessage={setErrorMessage}
-      />
-      <div
-        className="trip-planner__container"
-        style={{ display: mapVisible ? "flex" : "none" }}>
-        <div className="trip-planner__map">
-          <MapWidget />
-        </div>
-        <TripCostWidget distance={distance} />
-      </div>
+      {param1 === "first" ? (
+        <>
+          <h3>This page will display your search results.</h3>
+          <h2>
+            Make sure to set your trip details{" "}
+            <Link to="/trip-planner" style={{color: "green"}}>here</Link>
+          </h2>
+        </>
+      ) : (
+        <>
+          <h1>Your itinerary:</h1>
+          <ErrorMessage
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
+          <div
+            className="trip-planner__container"
+            style={{ display: mapVisible ? "flex" : "none" }}>
+            <div className="trip-planner__map">
+              <MapWidget />
+            </div>
+            <TripCostWidget distance={distance} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

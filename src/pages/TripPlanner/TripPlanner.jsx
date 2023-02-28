@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTripPlanner } from "hooks/useTripPlanner";
 import ErrorMessage from "components/ErrorMessage/ErrorMessage";
@@ -9,6 +9,8 @@ const TripPlanner = () => {
   const {
     errorMessage,
     setErrorMessage,
+    imageIndex, setImageIndex,
+    blurValue, setBlurValue,
     findItineraryStartInput,
     setFindItineraryStartInput,
     findItineraryEndInput,
@@ -26,9 +28,6 @@ const TripPlanner = () => {
     availableStartLocationsHistory,
     availableEndLocationsHistory
   } = useTripPlanner();
-
-  const [imageIndex, setImageIndex] = useState(0);
-  const [blurValue, setBlurValue] = useState(0);
 
   const BackgroundImage = () => {
     return (

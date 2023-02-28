@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useErrorMessage } from "components/ErrorMessage/useErrorMessage";
+import {
+  useLocationHistory,
+  useUpdateLocationHistory
+} from "context/LocationHistoryContext";
 import axios from "axios";
 
 export const useTripPlanner = () => {
   const { errorMessage, setErrorMessage } = useErrorMessage();
+  const [imageIndex, setImageIndex] = useState(0);
+  const [blurValue, setBlurValue] = useState(0);
   const [itineraryStart, setItineraryStart] = useState([]);
   const [itineraryEnd, setItineraryEnd] = useState([]);
   const [findingLocationLoading, setFindingLocationLoading] = useState(false);
@@ -20,6 +26,9 @@ export const useTripPlanner = () => {
     useState(false);
   const [findItineraryStartInput, setFindItineraryStartInput] = useState("");
   const [findItineraryEndInput, setFindItineraryEndInput] = useState("");
+
+  const locationHistory = useLocationHistory();
+  const updateLocationHistory = useUpdateLocationHistory();
 
   const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
 
@@ -65,8 +74,11 @@ export const useTripPlanner = () => {
         "lastSearchResults",
         `${itineraryStart}/${itineraryEnd}`
       );
+
+      updateLocationHistory(findItineraryStartInput, findItineraryEndInput)
       navigate(`/results/${itineraryStart}/${itineraryEnd}`);
     }
+    console.log(locationHistory);
 
     if (itineraryEnd.length > 0 && itineraryStart.length === 0) {
       setErrorMessage("Please enter your starting point");
@@ -138,6 +150,10 @@ export const useTripPlanner = () => {
   return {
     errorMessage,
     setErrorMessage,
+    imageIndex,
+    setImageIndex,
+    blurValue,
+    setBlurValue,
     findingLocationLoading,
     setFindingLocationLoading,
     availableStartLocations,

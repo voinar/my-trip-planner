@@ -1,3 +1,38 @@
 .home__planet {
-  font-size: 10rem;
+  font-size: 4rem;
+}
+
+.home__title {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.home__history {
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: $--box-shadow-standard;
+  border-radius: 8px;
+
+  span {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.home__history__empty {
+  margin: 1rem 0 0;
+}
+
+.home__history__locations {
+}
+
+.home__history__locations__item {
+  font-weight: 300;
 }

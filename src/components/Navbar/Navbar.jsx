@@ -12,7 +12,7 @@ const Navbar = () => {
     if (lastSearchResults.length > 0) {
       return `/results/${lastSearchResults[0]}/${lastSearchResults[1]}`;
     }
-    return `/results/54.5164982,18.5402738/49.6572222,20.395`;
+    return `/results/first/use`;
   };
 
   return (
