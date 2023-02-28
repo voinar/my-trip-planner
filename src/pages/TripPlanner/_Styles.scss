@@ -4,6 +4,7 @@
   flex-direction: column;
 
   padding: 1rem 0;
+
 }
 
 .trip-planner__map {
@@ -12,7 +13,7 @@
   width: 100%;
   height: calc(100vh - 280px);
 
-  box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: $--box-shadow-standard;
 }
 
 .trip-planner__search-inputs {
@@ -39,7 +40,7 @@
   height: 3rem;
   width: 60%;
 
-  box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: $--box-shadow-standard;
 
   input {
     all: unset;
@@ -93,7 +94,7 @@
 
   border-radius: 6px;
 
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .trip-planner__locations-list {
@@ -105,7 +106,7 @@
   padding: 0.4rem;
 
   border-radius: 0.3rem;
-  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: $--box-shadow-standard;
   z-index: 10000;
   cursor: pointer;
 

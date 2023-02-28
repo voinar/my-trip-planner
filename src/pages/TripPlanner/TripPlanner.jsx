@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useTripPlanner } from "hooks/useTripPlanner";
 import ErrorMessage from "components/ErrorMessage/ErrorMessage";
 import IconCancel from "img/icons/icon-cancel.svg";
+import backgroundImageUrls from "./backgroundImageData";
 
 const TripPlanner = () => {
   const {
@@ -23,8 +24,22 @@ const TripPlanner = () => {
     handleSelectEndLocation,
     findRouteCoords,
     availableStartLocationsHistory,
-    availableEndLocationsHistory,
+    availableEndLocationsHistory
   } = useTripPlanner();
+
+  const [imageIndex, setImageIndex] = useState(0);
+  const [blurValue, setBlurValue] = useState(0);
+
+  const BackgroundImage = () => {
+    return (
+      <img
+        className="trip-planner__background"
+        style={{ filter: `blur(${blurValue / 2}px)` }}
+        src={backgroundImageUrls.images[imageIndex]}
+        alt="background image"
+      />
+    );
+  };
 
   const AvailableStartLocationsList = () => {
     const resetStartQuery = location => {
@@ -154,15 +169,28 @@ const TripPlanner = () => {
   };
   closeAvailableEndLocationsListOnClickOutside(availableEndLocationsListRef);
 
+  useEffect(() => {
+    if (findItineraryStartInput.length > 0 && findItineraryStartInput.length < 10) {
+      setBlurValue(findItineraryStartInput.length);
+    }
+    if (findItineraryEndInput.length > 0 && findItineraryEndInput.length < 10) {
+      setBlurValue(findItineraryEndInput.length);
+    }
+  }, [findItineraryStartInput, findItineraryEndInput]);
+
+  useEffect(() => {
+    const getRandomInt = (max = backgroundImageUrls.images.length) => {
+      setImageIndex(Math.floor(Math.random() * max));
+    };
+    getRandomInt();
+  }, []);
+
   return (
     <div className="trip-planner container">
       <h1>Trip Planner</h1>
       <div className="trip-planner__search-inputs">
-        <img
-          className="trip-planner__background"
-          src="https://images.unsplash.com/photo-1604351888999-9ea0a2851e61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1586&q=80"
-          alt="background image"
-        />
+        <BackgroundImage />
+
         <div className="trip-planner__search-input">
           <input
             placeholder="From"
