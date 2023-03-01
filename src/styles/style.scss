@@ -1,5 +1,4 @@
 // general
-
 @import "./reset"; // global css reset
 @import "./variables"; // style variables container for colors, fonts and other global styles
 @import "./container"; // main container
@@ -8,28 +7,24 @@
 @import "../pages/Home/Styles";
 @import "../pages/FindLocation/Styles";
 @import "../pages/TripPlanner/Styles";
+@import "../pages/NotFound/Styles";
 
 // components
 @import "../components/Navbar/Styles";
 @import "../components/ErrorMessage/Styles";
 @import "../components/TripCostWidget/Styles";
 
-//atoms
-
 * {
   // outline: 1px solid #ff00ff55;
-}
-
-html {
-  // overflow: hidden;
 }
 
 body {
   font-family: $--font-main;
   color: $--c-black;
   background-color: $--c-white;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: overlay;
 }
 
 h1,
@@ -40,11 +35,11 @@ h5,
 h6,
 p,
 a {
-  font-weight: 300;
+  font-weight: 200;
 }
 
 h1 {
-  font-weight: 200;
+  font-weight: 300;
 }
 
 h2 {
@@ -79,57 +74,6 @@ button {
   transition: all 0.3s;
 }
 
-.btn--primary {
-  background-color: rgba(0, 222, 0, 0.7) !important;
-  width: 300px;
-}
-
-.btn--primary:hover {
-  background-color: rgba(0, 255, 0, 0.9) !important;
-}
-
-.btn--secondary {
-  width: 300px;
-}
-
-.btn--secondary:hover {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-}
-
-.btn--tertiary {
-  padding: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgb(250, 250, 250);
-  border-radius: 4px;
-}
-
-.btn--tertiary:hover {
-  opacity: 0.8;
-}
-
-.btn--back {
-  all: unset !important;
-  border: 0px;
-  padding: 0;
-  cursor: pointer !important;
-
-  img {
-    border: 0px;
-    min-width: 30px;
-    align-self: center;
-    transform: rotate(90deg);
-    cursor: pointer;
-  }
-}
-
-.hidden {
-  display: none;
-}
-
-.form__error-message {
-  color: red;
-}
-
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {
@@ -155,10 +99,7 @@ button {
 //----------------------------------
 //media queries
 //----------------------------------
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
+
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: $--font-xl;
@@ -181,16 +122,4 @@ button {
   ul {
     padding: 0;
   }
-
-  .btn--primary,
-  .btn--secondary,
-  .btn--tertiary {
-    width: auto;
-  }
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
 }

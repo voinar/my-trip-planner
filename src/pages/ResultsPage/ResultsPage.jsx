@@ -80,15 +80,16 @@ const ResultsPage = () => {
   );
 
   return (
-    <div className="results-page container">
+    <main className="results-page container">
       {param1 === "first" ? (
-        <>
+        <div className="home__history">
           <h3>This page will display your search results.</h3>
+          <br/>
           <h2>
             Make sure to set your trip details{" "}
             <Link to="/trip-planner" style={{color: "green"}}>here</Link>
           </h2>
-        </>
+        </div>
       ) : (
         <>
           <h1>Your itinerary:</h1>
@@ -106,7 +107,7 @@ const ResultsPage = () => {
           </div>
         </>
       )}
-    </div>
+    </main>
   );
 };
 

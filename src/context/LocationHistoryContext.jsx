@@ -1,4 +1,3 @@
-// import { LocationHistoryContext } from "App";
 import React, { useState, useContext } from "react";
 
 const LocationHistoryContext = React.createContext();
