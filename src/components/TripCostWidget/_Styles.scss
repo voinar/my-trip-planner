@@ -3,20 +3,11 @@
   flex-direction: row;
   gap: 2rem;
   align-items: center;
-  margin: 2rem 0 0 0;
+  margin: 1.2rem 0 0 0;
   padding: 1rem;
   background-color: white;
   border-radius: 6px;
   box-shadow: $--box-shadow-standard;
-
-  button {
-    width: 6rem;
-    background-color: greenyellow;
-  }
-
-  button:hover {
-    background-color: lime;
-  }
 }
 
 .trip-planner__cost-widget__icon {
