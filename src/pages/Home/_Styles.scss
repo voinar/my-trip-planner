@@ -1,3 +1,8 @@
+.home__container {
+  height: calc(100vh - 58px);
+  background-image: url("https://images.unsplash.com/photo-1519114056088-b877fe073a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1633&q=80");
+}
+
 .home__planet {
   font-size: 4rem;
 }
@@ -6,6 +11,8 @@
   display: flex;
   gap: 1.5rem;
   align-items: center;
+
+  color: white;
 }
 
 .home__history {
@@ -26,16 +33,17 @@
     flex-direction: column;
 
     li {
-      margin: .3rem .5rem;
+      margin: 0.3rem 0.5rem;
     }
   }
 }
 
 .home__history__empty {
   margin: 1rem 0 0;
-}
 
-.home__history__locations {
+  a {
+    color: $--c-primary-dark;
+  }
 }
 
 .home__history__locations__item {

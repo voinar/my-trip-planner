@@ -3,9 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;500;700&display=swap');
 
 $--c-white: rgb(247, 249, 251);
-$--c-black: rgb(58, 57, 57);
+$--c-black: rgb(4, 37, 82);
 $--font-main: 'Prompt', sans-serif;
-$--c-text: rgb(30, 27, 27);
+$--c-text: rgb(27, 28, 30);
+$--c-primary: rgb(188, 230, 252);
+$--c-primary-accent: rgb(160, 207, 242);
+$--c-primary-dark: rgb(7, 87, 153);
 
 //font-sizes
 $--font-xs: 10px;
@@ -26,7 +29,6 @@ $--border-focus: 1px solid rgba(0, 0, 0, 0.5);
 
 //shadows
 $--box-shadow-standard: 2px 2px 18px rgba(0, 119, 187, 0.14);
-
 
 //transitions
 $--transition-standard: all 0.3s;

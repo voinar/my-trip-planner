@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useTripPlanner } from "hooks/useTripPlanner";
 import ErrorMessage from "components/ErrorMessage/ErrorMessage";
 import IconCancel from "img/icons/icon-cancel.svg";
-import backgroundImageUrls from "./backgroundImageData";
+import backgroundImageUrls from "data/backgroundImageData";
 
 const TripPlanner = () => {
   const {

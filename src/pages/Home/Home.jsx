@@ -33,19 +33,15 @@ const Home = () => {
     ) : (
       <div className="home__history__empty">
         <h3>
-          Your search history is empty. Make your first search{" "}
-          <Link
-            to="/trip-planner"
-            style={{ color: "green" }}>
-            here.
-          </Link>
+          Your search history is empty.{" "}
+          <Link to="/trip-planner">Make your first search here.</Link>
         </h3>
       </div>
     );
   };
 
   return (
-    <div className="home container">
+    <div className="home__container container">
       <div className="home__title">
         <h1>Welcome to My Trip Planner!</h1>
         <div className="home__planet"> &#128506;</div>
