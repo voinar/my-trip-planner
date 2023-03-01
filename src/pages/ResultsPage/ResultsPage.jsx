@@ -5,11 +5,14 @@ import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import { useTripPlanner } from "hooks/useTripPlanner";
+import { useReactToPrint } from "react-to-print";
 import TripCostWidget from "components/TripCostWidget/TripCostWidget";
 import ErrorMessage from "components/ErrorMessage/ErrorMessage";
-import { useTripPlanner } from "hooks/useTripPlanner";
 
 const ResultsPage = () => {
+  const printRef = React.useRef();
+
   const { param1, param2 } = useParams();
   const { errorMessage, setErrorMessage } = useTripPlanner();
 
@@ -30,9 +33,9 @@ const ResultsPage = () => {
       lineOptions: {
         styles: [
           {
-            color: "#ff00ff65",
-            weight: 7,
-            opacity: 0.5
+            color: "#0000ff",
+            weight: 5,
+            opacity: 0.6
           }
         ],
         extendToWaypoints: true,
@@ -41,7 +44,7 @@ const ResultsPage = () => {
       draggableWaypoints: false,
       routeWhileDragging: false,
       addWaypoints: false,
-      showAlternatives: false
+      showAlternatives: false,
     })
       .addTo(map)
       .on("routesfound", e => {
@@ -56,7 +59,6 @@ const ResultsPage = () => {
       .on("routingerror", e => {
         setMapVisible(false);
         setErrorMessage(e.error.message);
-        // console.log("routingerror", e);
       });
 
     return null;
@@ -79,20 +81,38 @@ const ResultsPage = () => {
     </MapContainer>
   );
 
+  const handleDownloadPdf = useReactToPrint({
+    content: () => printRef.current
+  });
+
   return (
-    <main className="results-page container">
+    <main
+      ref={printRef}
+      className="results-page container">
       {param1 === "first" ? (
         <div className="home__history">
           <h3>This page will display your search results.</h3>
-          <br/>
+          <br />
           <h2>
             Make sure to set your trip details{" "}
-            <Link to="/trip-planner" style={{color: "green"}}>here</Link>
+            <Link
+              to="/trip-planner"
+              style={{ color: "green" }}>
+              here
+            </Link>
           </h2>
         </div>
       ) : (
-        <>
-          <h1>Your itinerary:</h1>
+        <div>
+          <div className="results-page__title">
+            <h1>Your itinerary:</h1>
+            <button
+              type="button"
+              className="trip-planner__button trip-planner__button--search"
+              onClick={handleDownloadPdf}>
+              Download as PDF
+            </button>
+          </div>
           <ErrorMessage
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
@@ -105,7 +125,7 @@ const ResultsPage = () => {
             </div>
             <TripCostWidget distance={distance} />
           </div>
-        </>
+        </div>
       )}
     </main>
   );
