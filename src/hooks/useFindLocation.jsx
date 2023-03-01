@@ -60,6 +60,7 @@ export const useFindLocation = () => {
     const getUserLocation = () => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
+          setZoomLevel(14)
           setUserLocation([
             position.coords.latitude,
             position.coords.longitude
