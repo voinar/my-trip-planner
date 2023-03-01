@@ -6,7 +6,11 @@ nav ul {
   margin: 0;
 
   align-items: center;
-  // font-size: 1.1rem;
+  font-size: 1.1rem;
+
+  li a {
+    font-weight: 200;
+  }
 
   li span:hover {
     color: green;

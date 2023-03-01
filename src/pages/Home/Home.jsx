@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const locationHistory = useLocationHistory();
-  console.log("home ctx", locationHistory);
 
   const LocationHistory = () => {
     return locationHistory[0].length > 0 ? (
@@ -38,7 +37,7 @@ const Home = () => {
           <Link
             to="/trip-planner"
             style={{ color: "green" }}>
-            here
+            here.
           </Link>
         </h3>
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import IconCoins from "img/icons/icon-coins.svg";
 
 const TripCostWidget = props => {
-  const [pricePerKm, setPricePerKm] = useState(null);
+  const [pricePerKm, setPricePerKm] = useState(0);
   const [travelCost, setTravelCost] = useState(0);
 
   // eslint-disable-next-line react/prop-types

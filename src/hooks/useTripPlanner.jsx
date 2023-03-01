@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useErrorMessage } from "components/ErrorMessage/useErrorMessage";
+import { useErrorMessage } from "hooks/useErrorMessage";
 import {
   useLocationHistory,
   useUpdateLocationHistory

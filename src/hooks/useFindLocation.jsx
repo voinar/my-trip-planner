@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useErrorMessage } from "components/ErrorMessage/useErrorMessage";
+import { useErrorMessage } from "hooks/useErrorMessage";
 
 export const useFindLocation = () => {
   const defaultLocation = [51.505, 21.09];

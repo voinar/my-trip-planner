@@ -9,8 +9,10 @@ const TripPlanner = () => {
   const {
     errorMessage,
     setErrorMessage,
-    imageIndex, setImageIndex,
-    blurValue, setBlurValue,
+    imageIndex,
+    setImageIndex,
+    blurValue,
+    setBlurValue,
     findItineraryStartInput,
     setFindItineraryStartInput,
     findItineraryEndInput,
@@ -169,7 +171,10 @@ const TripPlanner = () => {
   closeAvailableEndLocationsListOnClickOutside(availableEndLocationsListRef);
 
   useEffect(() => {
-    if (findItineraryStartInput.length > 0 && findItineraryStartInput.length < 10) {
+    if (
+      findItineraryStartInput.length > 0 &&
+      findItineraryStartInput.length < 10
+    ) {
       setBlurValue(findItineraryStartInput.length);
     }
     if (findItineraryEndInput.length > 0 && findItineraryEndInput.length < 10) {
@@ -187,7 +192,7 @@ const TripPlanner = () => {
   return (
     <div className="trip-planner container">
       <h1>Trip Planner</h1>
-      <div className="trip-planner__search-inputs">
+      <main className="trip-planner__search-inputs">
         <BackgroundImage />
 
         <div className="trip-planner__search-input">
@@ -241,7 +246,7 @@ const TripPlanner = () => {
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
         />
-      </div>
+      </main>
     </div>
   );
 };
