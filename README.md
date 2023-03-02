@@ -8,7 +8,7 @@ GIS-based app.
 
 <br />
 
-## See live: https://my-trip-planner.netlify.app/
+## See live: https://mytripplanner.netlify.app/
 
 <br />
 
