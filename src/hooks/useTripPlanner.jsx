@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useErrorMessage } from "hooks/useErrorMessage";
-import {
-  useLocationHistory,
-  useUpdateLocationHistory
-} from "context/LocationHistoryContext";
+import { useUpdateLocationHistory } from "context/LocationHistoryContext";
 import axios from "axios";
 
 export const useTripPlanner = () => {
@@ -27,7 +24,6 @@ export const useTripPlanner = () => {
   const [findItineraryStartInput, setFindItineraryStartInput] = useState("");
   const [findItineraryEndInput, setFindItineraryEndInput] = useState("");
 
-  const locationHistory = useLocationHistory();
   const updateLocationHistory = useUpdateLocationHistory();
 
   const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
@@ -75,16 +71,19 @@ export const useTripPlanner = () => {
         `${itineraryStart}/${itineraryEnd}`
       );
 
-      updateLocationHistory(findItineraryStartInput, findItineraryEndInput)
+      updateLocationHistory(findItineraryStartInput, findItineraryEndInput);
       navigate(`/results/${itineraryStart}/${itineraryEnd}`);
     }
-    console.log(locationHistory);
 
     if (itineraryEnd.length > 0 && itineraryStart.length === 0) {
       setErrorMessage("Please enter your starting point");
     }
 
     if (itineraryStart.length > 0 && itineraryEnd.length === 0) {
+      setErrorMessage("Please enter your destination");
+    }
+
+    if (itineraryStart.length === 0 && itineraryEnd.length === 0) {
       setErrorMessage("Please enter your destination");
     }
   };
